@@ -10,7 +10,7 @@ const Source = new Schema({
     imgdetail2 : { type : String},
     imgdetail3 : { type : String},
     slug : {type : String},
-    link : {type : String}
+    link : {type : String }
 });
 
 module.exports = mongoose.model("Source" , Source)

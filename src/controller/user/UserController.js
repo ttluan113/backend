@@ -22,7 +22,7 @@ class UserController {
                     const token = jwt.sign({ username : LoginUser.username , 
                         admin : LoginUser.isAdmin , 
                         surplus : LoginUser.surplus
-                    }, process.env.ACCSESS_TOKEN ,  { expiresIn: '1d' });
+                    }, process.env.ACCSESS_TOKEN ,  { expiresIn: '60h' });
                     const username = LoginUser.username;
                     const surplus = LoginUser.surplus;
                     const admin = LoginUser.isAdmin;
@@ -35,19 +35,21 @@ class UserController {
         }
 
         GetAllUser(req , res , next){
-            User.find({})
-            .then(data => res.json(data))
+            User.find({}).select('username surplus').exec((err , models) => {
+                if(err){
+                    return;
+                }else{
+                    res.status(200).json(models);
+                }
+            })
         }
 
         EditUser(req , res , next){
-            User.findOne({username : req.body.username})
-            .then(newSurplus => {
-                if(newSurplus){
-                    res.status(200).json("Cộng Tiền Thành Công !!!")
-                    User.updateOne({surplus : req.body.surplus})   
-                    .then()                 
-                }else{
-                    res.status(403).json("Có Lỗi Xảy Ra !!!")
+            User.findOne({username : req.body.itemUsername})
+            .then(dataUser =>{
+                if(dataUser){
+                    dataUser.updateOne({username : req.body.itemUsername , surplus : req.body.surplus})
+                    .then()
                 }
             })
         }
@@ -55,6 +57,11 @@ class UserController {
         DeleteUser(req , res , next){
             User.deleteOne({_id : req.body._id})
             .then(res.status(200).json("Xóa Thành Công !!!"))
+        }
+
+        GetOneUser(req , res , next){
+            User.findOne({username : req.body.username})
+            .then(getOneUser  => console.log(getOneUser))
         }
 
 }

@@ -5,16 +5,15 @@ const historySource = require('../../model/HistorySource');
 
 class ModelSource{
     GetSource(req, res){
-        Source.find({})
-        .then(dataSource => {
-          if(dataSource){
-            dataSource.forEach(data => {
-              const {link , ...NewData } = data._doc;
-              res.status(200).json([NewData])
-            })
-          }
-        })
-      }
+      const dataSend = 'img , price , pricestring , slug , imgdetail1 , imgdetail2 , detail3 , ma'
+      Source.find().select(dataSend).exec((err, models) => {
+        if(err){
+          return;
+        }
+        res.json(models)
+      })
+
+    }
 
     showOneSource(req , res){
       Source.findOne({slug : req.params.slug})
@@ -23,7 +22,6 @@ class ModelSource{
           const {link , ...NewData } = dataOneSource._doc;
           res.status(200).json([NewData])
         }
-
       })
     }
 

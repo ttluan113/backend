@@ -9,12 +9,12 @@ router.use('/login'  , UserController.Login);
 
 router.use('/reg'  , UserController.Register);
 
-router.use('/getuser'  , UserController.GetAllUser);
+router.use('/getusers'  , UserController.GetAllUser);
 
-router.use('/edituser' , middleware.verifyTokenAdmin , UserController.EditUser);
+router.use('/edituser/:slug' , middleware.verifyTokenAdmin , UserController.EditUser);
 
 router.use('/deleteuser/:id' , middleware.verifyTokenAdmin , UserController.DeleteUser);
 
-
+router.use('/getuser/:slug'  , UserController.GetOneUser)
 
 module.exports = router;

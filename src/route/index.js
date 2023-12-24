@@ -10,11 +10,13 @@ function route(app){
 
     app.post('/logout' , UserRouter);
 
-    app.get('/getuser'  , UserRouter);
+    app.get('/getusers'  , UserRouter);
 
-    app.put('/edituser' , UserRouter);
+    app.put('/edituser/:slug' , UserRouter);
 
     app.delete('/deleteuser/:id' , UserRouter);
+
+    app.get('/getuser/:slug' , UserRouter);
     
     //ControllerSource
 

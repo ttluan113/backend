@@ -16,7 +16,8 @@ router.use('/addsource' , middleware.verifyTokenAdmin  , ModelSource.addSource);
 
 router.use('/editsource/:slug', middleware.verifyTokenAdmin , ModelSource.editSource);
 
-router.use('/deletesource/:slug', middleware.verifyTokenAdmin , ModelSource.deleteSource )
+router.use('/deletesource/:slug', middleware.verifyTokenAdmin , ModelSource.deleteSource);
+
 
 
 
