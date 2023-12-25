@@ -13,7 +13,7 @@ db.Connect();
 app.use(express.json());
 app.use(express.urlencoded({ extended : true }));
 
-app.use(cors({origin: 'https://fullstack-amber.vercel.app'}));
+app.use(cors({origin: 'https://fullstack-henna.vercel.app'}));
 
 route(app);
 
