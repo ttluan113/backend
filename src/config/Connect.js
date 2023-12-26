@@ -5,7 +5,7 @@ async function Connect(){
     
     try{
         const test = process.env.URL_WEB;
-        await mongoose.connect("mongodb+srv://ttluan1103:cac123123@fullstack.vrnxzmb.mongodb.net/?retryWrites=true&w=majority",{
+        await mongoose.connect(process.env.URL_WEB,{
             useNewUrlParser : true ,
             useUnifiedTopology : true
         });
