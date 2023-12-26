@@ -26,7 +26,8 @@ class UserController {
                     const username = LoginUser.username;
                     const surplus = LoginUser.surplus;
                     const admin = LoginUser.isAdmin;
-                    res.status(200).json({token , username , surplus , admin});
+                    const id = LoginUser._id;
+                    res.status(200).json({token , username , surplus , admin , id});
 
                 }else{
                     res.status(403).json({message : "Tài Khoản Mật Khẩu Không Chính Xác !!!"})
@@ -49,7 +50,9 @@ class UserController {
             .then(dataUser =>{
                 if(dataUser){
                     dataUser.updateOne({username : req.body.itemUsername , surplus : req.body.surplus})
-                    .then()
+                    .then(res.status(200).json("Cộng Tiền Thành Công !!!"))
+                }else{
+                    return res.status(403).json("Vui Lòng Thử Lại !!!")
                 }
             })
         }
@@ -59,10 +62,7 @@ class UserController {
             .then(res.status(200).json("Xóa Thành Công !!!"))
         }
 
-        GetOneUser(req , res , next){
-            User.findOne({username : req.body.username})
-            .then(getOneUser  => console.log(getOneUser))
-        }
+     
 
 }
 

@@ -16,7 +16,7 @@ function route(app){
 
     app.delete('/deleteuser/:id' , UserRouter);
 
-    app.get('/getuser/:slug' , UserRouter);
+
     
     //ControllerSource
 
