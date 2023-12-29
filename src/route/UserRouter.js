@@ -15,6 +15,6 @@ router.use('/edituser/:slug' , middleware.verifyTokenAdmin , UserController.Edit
 
 router.use('/deleteuser/:id' , middleware.verifyTokenAdmin , UserController.DeleteUser);
 
-router.use('/getuser/:slug'  , UserController.GetOneUser)
+router.use('/getuser/:slug', middleware.verifyTokenAdmin , UserController.GetOneUser)
 
 module.exports = router;
