@@ -9,7 +9,7 @@ router.use('/login'  , UserController.Login);
 
 router.use('/reg'  , UserController.Register);
 
-router.use('/getusers'  , UserController.GetAllUser);
+router.use('/getusers', middleware.verifyTokenAdmin  , UserController.GetAllUser);
 
 router.use('/edituser/:slug' , middleware.verifyTokenAdmin , UserController.EditUser);
 
