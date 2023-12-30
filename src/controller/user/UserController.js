@@ -62,7 +62,10 @@ class UserController {
             .then(res.status(200).json("Xóa Thành Công !!!"))
         }
 
-     
+        GetOneUser(req , res , next){
+            User.findOne({username : req.body.username})
+            .then(getOneUser  => console.log(getOneUser))
+        }
 
 }
 
