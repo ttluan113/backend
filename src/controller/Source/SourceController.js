@@ -5,7 +5,7 @@ const historySource = require('../../model/HistorySource');
 
 class ModelSource{
     GetSource(req, res){
-      const dataSend = 'img , price , pricestring , slug , imgdetail1 , imgdetail2 , detail3 , ma'
+      const dataSend = 'img , price , pricestring , slug , imgdetail1 , imgdetail2 , detail3 , ma , countdownload , countview'
       Source.find().select(dataSend).exec((err, models) => {
         if(err){
           return;
@@ -19,6 +19,9 @@ class ModelSource{
       Source.findOne({slug : req.params.slug})
       .then(dataOneSource => {
         if(dataOneSource){
+          const newView = dataOneSource.countview
+          dataOneSource.updateOne({countview : newView + 1 })
+          .then()
           const {link , ...NewData } = dataOneSource._doc;
           res.status(200).json([NewData])
         }
@@ -46,6 +49,9 @@ class ModelSource{
               sourceUser.save();
               User.updateOne({surplus : surplusUpdate})
               .then()
+            const newView = dataBuy.countdownload
+            dataBuy.updateOne({countdownload : newView + 1})
+            .then()
             }else{
               res.status(403).json("Số Dư Trong Tài Khoản Của Bạn Không Đủ !!!");
             }
