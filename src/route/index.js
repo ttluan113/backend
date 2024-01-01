@@ -1,13 +1,10 @@
 const UserRouter = require('./UserRouter')
 const SourceRouter = require('./SourceRouter')
-const { createProxyMiddleware } = require('http-proxy-middleware');
+
 
 function route(app){
     //ControllerUser
-    app.post('/login', createProxyMiddleware({
-        target: 'http://fullstack.pro.vn',
-        changeOrigin: true,
-      }), UserRouter);
+    app.post('/login', UserRouter);
 
     app.post('/reg' , UserRouter);
 
