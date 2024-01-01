@@ -64,7 +64,7 @@ class UserController {
 
         GetOneUser(req , res , next){
             User.findOne({username : req.body.username})
-            .then(getOneUser  => console.log(getOneUser))
+            .then()
         }
 
 }

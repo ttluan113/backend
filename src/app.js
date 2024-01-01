@@ -1,7 +1,9 @@
 
 const express = require('express');
 const app = express();
-const port = 5000;
+require("dotenv").config();
+const PORT = process.env.NODE_DOCKER_PORT || 5000;
+
 const cors = require('cors');
 
 const route = require('./route/index');
@@ -13,10 +15,12 @@ db.Connect();
 app.use(express.json());
 app.use(express.urlencoded({ extended : true }));
 
-app.use(cors({origin: 'https://fullstacknew.vercel.app'}));
+app.use(cors({origin: 'https://www.fullstack.pro.vn'}));
 
 route(app);
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+
+
+app.listen(PORT, () => {
+  console.log(`Example app listening on port ${PORT}`)
 })
