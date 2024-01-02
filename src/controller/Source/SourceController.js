@@ -38,7 +38,7 @@ class ModelSource{
           Source.findOne({slug})
           .then(dataBuy => {
             let priceSource = dataBuy.price
-            let surplusUpdate =  priceUser - priceSource 
+            let surplusUpdate =  priceUser - priceSource   
             if(surplusUpdate >= 0 ){
               res.status(200).json("Thanh Toán Thành Công !!!");
               const sourceUser = new historySource({
@@ -47,7 +47,7 @@ class ModelSource{
                 username : usernameBuycode
               });
               sourceUser.save();
-              User.updateOne({surplus : surplusUpdate})
+              dataBuyCode.updateOne({surplus : surplusUpdate})
               .then()
             const newView = dataBuy.countdownload
             dataBuy.updateOne({countdownload : newView + 1})
